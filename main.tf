@@ -1,12 +1,8 @@
-resource "random_password" "password" {
-  length  = 8
-  special = true
+module "password" {
+source = "./random"
+user = var.user
+}
 
-  #override_special = "_%@"
-  override_special = "!#$%&*()-_=+[]{}<>:?"
-  upper            = true
-  lower            = true
-  min_upper        = 1
-  min_lower        = 1
-  min_special      = 1
+output "icp_credentials" {
+value = module.password.icp_credentials
 }
